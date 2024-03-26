@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETRAN RJ</title>
+    <style>
+        /* Estilos para a div#velocidade */
+        #velocidade {
+            width: 350px;
+            /* Largura da div */
+            height: auto;
+            /* Altura da div */
+            border-radius: 10px;
+            /* Raio dos cantos arredondados */
+            padding: 20px;
+            /* Espaçamento interno */
+            margin: 0 auto;
+            /* Centraliza horizontalmente */
+            margin-top: 20px;
+            /* Margem superior */
+            color: aliceblue;
+            background: linear-gradient(to bottom, rgba(41, 60, 167, 0.8), rgba(80, 190, 231, 0.8));
+            /* Fundo degradê transparente */
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            /* Adicionado para criar o efeito de sangue */
+        }
+
+        p {
+            text-align: center;
+        }
+
+        /* Estilos para a div#inputs */
+        #inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Div principal que contém todo o conteúdo -->
+    <div id="velocidade">
+        <!-- Título -->
+        <h1>Sistema de Multas <br>semi-automático</h1>
+        <!-- Div que contém o campo de entrada de velocidade e o botão de verificação -->
+        <div id="inputs">
+            <!-- Campo de entrada de velocidade -->
+            <p>Velocidade do carro Km/H: <input type="number" name="VelocidadeCarro" id="VelocidadeCarro" min="0"></p>
+            <!-- Botão de verificação -->
+            <input type="button" value="Verificar" onclick="calcular()">
+        </div>
+        <!-- Div para exibir o resultado -->
+        <div id="res"></div>
+        <!-- Script JavaScript para realizar a verificação -->
+        <script>
+            function calcular() {
+                // Obter o campo de entrada de velocidade e o elemento de resultado
+                var VelocidadeCarro = document.querySelector('input#VelocidadeCarro');
+                var res = document.querySelector('div#res');
+                // Obter o valor da velocidade inserida
+                var vel = Number(VelocidadeCarro.value);
+                // Exibir a velocidade atual
+                res.innerHTML = `<p>Sua velocidade atual é de <strong> ${vel} Km/h</strong></p>`;
+                // Verificar se a velocidade é superior a 60 Km/h
+                if (vel > 60) {
+                    // Se for, exibir mensagem de multa
+                    res.innerHTML += '<p>Você ultrapassou a velocidade permitida.</p> <br><p><strong>MULTADO</strong></p>'
+                    res.innerHTML += '<p>Reduza a velocidade e dirija com segurança.</p>'
+                } else {
+                    // Caso contrário, exibir mensagem de conformidade
+                    res.innerHTML += '<p>Você está na velocidade permitida. <br><strong>BOA VIAGEM! </strong></p>'
+                    res.innerHTML += '<p>Ao dirigir use o cinto de segurança</p>'
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>
